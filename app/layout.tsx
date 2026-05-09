@@ -3,6 +3,8 @@ import { Oswald, Playfair_Display, Cormorant_Garamond, Inter } from 'next/font/g
 import './globals.css';
 import { SITE_CONFIG } from '@/lib/config';
 import { getPalette } from '@/lib/palettes';
+import { t } from '@/lib/get-ui-text';
+import CookieBanner from '@/components/widgets/CookieBanner';
 // Load all 4 heading font options
 const oswald = Oswald({
   subsets: ['latin'],
@@ -57,6 +59,7 @@ export default function RootLayout({
 }>) {
   const { headingFont } = SITE_CONFIG;
   const palette = getPalette(SITE_CONFIG.palette);
+  const ui = t();
 
   // Inject palette as CSS variables
   const cssVars: React.CSSProperties & Record<string, string> = {
@@ -89,7 +92,10 @@ export default function RootLayout({
 
   return (
     <html lang={SITE_CONFIG.language} className={fontVariables} style={cssVars}>
-      <body className={bodyClass} data-theme={palette.isDark ? 'dark' : 'light'}>{children}</body>
+      <body className={bodyClass} data-theme={palette.isDark ? 'dark' : 'light'}>
+      {children}
+      <CookieBanner message={ui.cookie.message} accept={ui.cookie.accept} reject={ui.cookie.reject} learnMore={ui.cookie.learnMore} settings={ui.cookie.settings} />
+    </body>
     </html>
   );
 }
