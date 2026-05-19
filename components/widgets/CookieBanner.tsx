@@ -55,7 +55,7 @@ export default function CookieBanner({ message, accept, reject, learnMore, setti
       <div className={styles.inner}>
         <p className={styles.message}>
           {message}{" "}
-          <a href="/privacy" className={styles.link}>{learnMore}</a>
+          <a href="/datenschutz" className={styles.link}>{learnMore}</a>
         </p>
         <div className={styles.actions}>
           <button className={styles.reject} onClick={handleReject}>{reject}</button>
